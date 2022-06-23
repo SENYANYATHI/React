@@ -2,26 +2,28 @@ import logo from './logo.svg';
 import './App.css';
 
 import React, {useState} from 'react'
-import Additem  from './components/additem';
+
+import Home from './components/homepage'
+import {BrowserRouter as router , Switch, route} from 'react-router-dom'
 
 function App() {
 
   const [transaction,setTransaction] = useState ([]);
 
-  const addTransaction = ((amount, item , transactionType)=>{
+  const addTransaction= ((amount,transaction, transactionType) =>{
 
-    setTransaction ((item)=> [...item, {
-      amount:amount,
-      item:item,
-      transactionType:transactionType,
-    }])
+   setTransaction((item)=> [...item,{
+    amount:amount,
+    item:transaction,
+    transactionType:transactionType
+
+   }])
 
     console.log(transaction);
   })
   return (
     <div className="Container">
-   <DisplayTransaction list ={transaction}/>
-   <Additem add={addTransaction} />
+  <Home list={transaction} add={addTransaction}/>
    
 
     </div>
